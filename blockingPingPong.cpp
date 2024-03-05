@@ -20,10 +20,11 @@ int main(int argc, char *argv[])
     }
     
 
-    char *buffer;
+
     double send_data = 1.;
-    int length = 1;
+    int length = 2;
     int num_iterations = 1;
+    char *buffer = (char *)malloc(length * sizeof(char));
 
     // let process A be rank = 0
     // let process B be rank = 1
@@ -34,18 +35,14 @@ int main(int argc, char *argv[])
         if (rank == 0) {
             start_time = MPI_Wtime();
 
-            MPI_Send(buffer,length,MPI_DOUBLE,
-            processB,0,MPI_COMM_WORLD);
-            MPI_Recv(buffer,length,MPI_DOUBLE,
-            processB,0,MPI_COMM_WORLD,MPI_STATUS_IGNORE);
+            MPI_Send(buffer,length,MPI_CHAR, processB,0,MPI_COMM_WORLD);
+            MPI_Recv(buffer,length,MPI_CHAR, processB,0,MPI_COMM_WORLD,MPI_STATUS_IGNORE);
 
             end_time = MPI_Wtime();
-        } else {
+        } else if (rank == 1){
             start_time = MPI_Wtime();
-            MPI_Recv(buffer,length,MPI_DOUBLE,
-                processA,0,MPI_COMM_WORLD,MPI_STATUS_IGNORE);
-            MPI_Send(buffer,length,MPI_DOUBLE,
-            processB,0,MPI_COMM_WORLD);
+            MPI_Recv(buffer,length,MPI_CHAR, processA,0,MPI_COMM_WORLD,MPI_STATUS_IGNORE);
+            MPI_Send(buffer,length,MPI_CHAR,processB,0,MPI_COMM_WORLD);
             end_time = MPI_Wtime();
         }
 

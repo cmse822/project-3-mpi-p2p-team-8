@@ -43,7 +43,7 @@ int main(int argc, char *argv[])
         } else if (rank == 1){
             start_time = MPI_Wtime();
             MPI_Recv(buffer,length,MPI_CHAR, processA,0,MPI_COMM_WORLD,MPI_STATUS_IGNORE);
-            MPI_Send(buffer,length,MPI_CHAR,processB,0,MPI_COMM_WORLD);
+            MPI_Send(buffer,length,MPI_CHAR,processA,0,MPI_COMM_WORLD);
             end_time = MPI_Wtime();
         }
 

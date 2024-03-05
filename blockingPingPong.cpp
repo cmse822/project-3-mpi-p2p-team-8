@@ -27,24 +27,26 @@ int main(int argc, char *argv[])
 
     // let process A be rank = 0
     // let process B be rank = 1
+    double start_time = 0;
+    double end_time = 0;
 
     for (int n=0; n<num_iterations; n++) {
         if (rank == 0) {
-            double start_time = MPI_Wtime();
+            start_time = MPI_Wtime();
 
             MPI_Send (buffer,length,MPI_DOUBLE,
-            processB,0,MPI_COMM_WORLD)
+            processB,0,MPI_COMM_WORLD);
             MPI_Recv(buffer,length,MPI_DOUBLE,
-            processB,0,MPI_COMM_WORLD,MPI_STATUS_IGNORE)
+            processB,0,MPI_COMM_WORLD,MPI_STATUS_IGNORE);
 
-            double end_time = MPI_Wtime();
+            end_time = MPI_Wtime();
         } else {
-            double start_time = MPI_Wtime();
+            start_time = MPI_Wtime();
             MPI_Recv(buffer,length,MPI_DOUBLE,
-                processA,0,MPI_COMM_WORLD,MPI_STATUS_IGNORE)
+                processA,0,MPI_COMM_WORLD,MPI_STATUS_IGNORE);
             MPI_Send(buffer,length,MPI_DOUBLE,
-            processB,0,MPI_COMM_WORLD)
-            double end_time = MPI_Wtime();
+            processB,0,MPI_COMM_WORLD);
+            end_time = MPI_Wtime();
         }
 
     }

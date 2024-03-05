@@ -14,7 +14,7 @@ int main(int argc, char *argv[])
      processA = 0; processB = numtasks-1;
 
 
-    if (procno==0) {
+    if (rank==0) {
         printf("Ping-pong between ranks %d--%d\n",
            processA,processB);
     }

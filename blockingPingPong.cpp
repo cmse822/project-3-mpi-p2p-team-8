@@ -11,7 +11,7 @@ int main(int argc, char *argv[])
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);
     
     int processA,processB;
-     processA = 0; processB = numtasks-1;
+     processA = 0; processB = 1;
 
 
     if (rank==0) {
@@ -20,7 +20,7 @@ int main(int argc, char *argv[])
     }
     
 
-    double *buffer;
+    char *buffer;
     double send_data = 1.;
     int length = 1;
     int num_iterations = 1;
@@ -34,7 +34,7 @@ int main(int argc, char *argv[])
         if (rank == 0) {
             start_time = MPI_Wtime();
 
-            MPI_Send (buffer,length,MPI_DOUBLE,
+            MPI_Send(buffer,length,MPI_DOUBLE,
             processB,0,MPI_COMM_WORLD);
             MPI_Recv(buffer,length,MPI_DOUBLE,
             processB,0,MPI_COMM_WORLD,MPI_STATUS_IGNORE);

@@ -50,7 +50,7 @@ int main(int argc, char *argv[])
     }
     
     double total_time = end_time - start_time;
-    printf("Time to complete the ping-pong exchange with message size %d: %d", length, total_time);
+    printf("Time to complete the ping-pong exchange with message size %d: %f\n", length, total_time);
     MPI_Finalize();
     return 0;
 }

@@ -23,9 +23,7 @@ int main(int argc, char *argv[])
 
 
     double send_data = 1.;
-    int message_size = 2;
     int num_iterations = 100;
-    char *buffer = (char *)malloc(message_size * sizeof(char));
 
     // let process A be rank = 0
     // let process B be rank = 1
@@ -37,34 +35,36 @@ int main(int argc, char *argv[])
     int total_message_size = 0;
     int total_message_size_matrix [12] = {};
 
-    for (i = 0; i < length(message_size); i++) {
+    for (int i = 0; i < sizeof(message_size); i++) {
+        char *buffer = (char *)malloc(message_size[i] * sizeof(char));
         total_message_size = 0;
         for (int n=0; n<num_iterations; n++) {
             if (rank == 0) {
                 start_time = MPI_Wtime();
 
-                MPI_Send(buffer,message_size,MPI_CHAR, processB,0,MPI_COMM_WORLD);
-                MPI_Recv(buffer,message_size,MPI_CHAR, processB,0,MPI_COMM_WORLD,MPI_STATUS_IGNORE);
-                total_message_size += message_size
+                MPI_Send(buffer,message_size[i],MPI_CHAR, processB,0,MPI_COMM_WORLD);
+                MPI_Recv(buffer,message_size[i],MPI_CHAR, processB,0,MPI_COMM_WORLD,MPI_STATUS_IGNORE);
+                total_message_size += message_size[i];
 
                 end_time = MPI_Wtime();
             } else if (rank == 1){
                 start_time = MPI_Wtime();
-                MPI_Recv(buffer,message_size,MPI_CHAR, processA,0,MPI_COMM_WORLD,MPI_STATUS_IGNORE);
-                MPI_Send(buffer,message_size,MPI_CHAR,processA,0,MPI_COMM_WORLD);
+                MPI_Recv(buffer,message_size[i],MPI_CHAR, processA,0,MPI_COMM_WORLD,MPI_STATUS_IGNORE);
+                MPI_Send(buffer,message_size[i],MPI_CHAR,processA,0,MPI_COMM_WORLD);
                 
-                total_message_size += message_size
+                total_message_size += message_size[i];
                 end_time = MPI_Wtime();
             }
 
         }
 
         total_message_size_matrix[i] = total_message_size;
+
+        double total_time = end_time - start_time;
+        printf("Time to complete the ping-pong exchange with message size %d: %f\n", message_size[i], total_time);
     }
 
     
-    double total_time = end_time - start_time;
-    printf("Time to complete the ping-pong exchange with message size %d: %f\n", length, total_time);
     MPI_Finalize();
     return 0;
 }

@@ -75,7 +75,7 @@ int main(int argc, char *argv[])
             printf("Average time to complete the ping-pong exchange with message size %d: %f\n", message_size[i], avg_time);
             printf("avg time: %f:", avg_time, "\n");
             avg_time_matrix[i] = avg_time;
-            csvFile << avg_time_matrix[i] << ",";
+            csvFile << avg_time << ",";
         }
         
     }

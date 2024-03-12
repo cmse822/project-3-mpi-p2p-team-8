@@ -1,3 +1,7 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+
+
 def main():
     csv_file_path = 'blockingPingPong.csv'
 
@@ -5,15 +9,16 @@ def main():
     
     df = pd.read_csv(csv_file_path, low_memory=False)
 
-    fig, ax1 = plt.subplots()
+    print(df)
 
     avg_time_row = df.iloc[0].tolist()
-    ax1.scatter(message_sizes, avg_time_row, label='Avgerate time per message size', linestyle='-', linewidth=1, color='blue')
-    ax1.set_xlabel('Message size (bytes)')
-    ax1.set_ylabel('Average time (seconds)')
-    ax1.set
-    ax1.legend(loc='upper left',)
-    ax1.grid(True)
+
+    
+    plt.plot(message_sizes, avg_time_row, label='Avgerate time per message size', linestyle='-', linewidth=1, color='blue')
+    plt.xlabel('Message size (bytes)')
+    plt.ylabel('Average time (seconds)')
+    plt.legend(loc='upper left',)
+    plt.grid(True)
 
     plt.title("Average time per message size")
     plt.savefig("blockingPingPongAverageTimePerMessageSize.png")

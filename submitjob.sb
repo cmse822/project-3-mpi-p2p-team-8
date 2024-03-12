@@ -1,0 +1,23 @@
+#!/bin/bash
+########## Define Resources Needed with SBATCH Lines ##########
+ 
+#SBATCH --time=01:00:00             # limit of wall clock time - how long the job will run (same as -t)
+#SBATCH --nodes=2                   # number of nodes - ensure the tasks are distributed across 2 different nodes
+#SBATCH --ntasks=2                  # number of tasks - how many tasks that you require, indicating 2 different tasks on 2 nodes
+#SBATCH --cpus-per-task=32          # number of CPUs (or cores) per task, with 32 cores per task to make a total of 64 cores
+#SBATCH --mem=2G                    # memory required per node - amount of memory (in bytes)
+#SBATCH --job-name=cores64          # you can give your job a name for easier identification (same as -J)
+
+ 
+ 
+########## Command Lines to Run ##########
+
+module purge
+module load gcc/7.3.0-2.30 openmpi hdf5 python git
+  
+cd $SLURM_SUBMIT_DIR                   ### change to the directory where your code is located
+ 
+srun -n 64 blockingRingShift.o             ### call your executable
+srun -n 64 nonblockingRingShift.o             ### call your executable
+ 
+scontrol show job $SLURM_JOB_ID     ### write job information to output file

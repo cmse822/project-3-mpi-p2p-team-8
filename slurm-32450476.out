@@ -1,0 +1,111 @@
+Lmod Warning: Input module (gcc) not found, using module: GCC . . . (ICER v.) 
+
+
+Lmod Warning: Input module (openmpi) not found, using module: OpenMPI . . .
+(ICER v.) 
+
+
+Lmod Warning: Input module (hdf5) not found, using module: HDF5 . . . (ICER
+v.) 
+
+
+Lmod Warning: Input module (python) not found, using module: Python . . .
+(ICER v.) 
+
+
+slurmstepd: error: execve(): 4_4.out: No such file or directory
+slurmstepd: error: execve(): 4_4.out: No such file or directory
+slurmstepd: error: execve(): 4_4.out: No such file or directory
+slurmstepd: error: execve(): 4_4.out: No such file or directory
+slurmstepd: error: execve(): 4_4.out: No such file or directory
+slurmstepd: error: execve(): 4_4.out: No such file or directory
+slurmstepd: error: execve(): 4_4.out: No such file or directory
+slurmstepd: error: execve(): 4_4.out: No such file or directory
+slurmstepd: error: execve(): 4_4.out: No such file or directory
+slurmstepd: error: execve(): 4_4.out: No such file or directory
+slurmstepd: error: execve(): 4_4.out: No such file or directory
+slurmstepd: error: execve(): 4_4.out: No such file or directory
+slurmstepd: error: execve(): 4_4.out: No such file or directory
+slurmstepd: error: execve(): 4_4.out: No such file or directory
+slurmstepd: error: execve(): 4_4.out: No such file or directory
+slurmstepd: error: execve(): 4_4.out: No such file or directory
+slurmstepd: error: execve(): 4_4.out: No such file or directory
+slurmstepd: error: execve(): 4_4.out: No such file or directory
+slurmstepd: error: execve(): 4_4.out: No such file or directory
+slurmstepd: error: execve(): 4_4.out: No such file or directory
+slurmstepd: error: execve(): 4_4.out: No such file or directory
+slurmstepd: error: execve(): 4_4.out: No such file or directory
+slurmstepd: error: execve(): 4_4.out: No such file or directory
+slurmstepd: error: execve(): 4_4.out: No such file or directory
+slurmstepd: error: execve(): 4_4.out: No such file or directory
+slurmstepd: error: execve(): 4_4.out: No such file or directory
+slurmstepd: error: execve(): 4_4.out: No such file or directory
+slurmstepd: error: execve(): 4_4.out: No such file or directory
+slurmstepd: error: execve(): 4_4.out: No such file or directory
+slurmstepd: error: execve(): 4_4.out: No such file or directory
+slurmstepd: error: execve(): 4_4.out: No such file or directory
+slurmstepd: error: execve(): 4_4.out: No such file or directory
+slurmstepd: error: execve(): 4_4.out: No such file or directory
+slurmstepd: error: execve(): 4_4.out: No such file or directory
+slurmstepd: error: execve(): 4_4.out: No such file or directory
+slurmstepd: error: execve(): 4_4.out: No such file or directory
+slurmstepd: error: execve(): 4_4.out: No such file or directory
+slurmstepd: error: execve(): 4_4.out: No such file or directory
+slurmstepd: error: execve(): 4_4.out: No such file or directory
+slurmstepd: error: execve(): 4_4.out: No such file or directory
+slurmstepd: error: execve(): 4_4.out: No such file or directory
+slurmstepd: error: execve(): 4_4.out: No such file or directory
+slurmstepd: error: execve(): 4_4.out: No such file or directory
+slurmstepd: error: execve(): 4_4.out: No such file or directory
+slurmstepd: error: execve(): 4_4.out: No such file or directory
+slurmstepd: error: execve(): 4_4.out: No such file or directory
+slurmstepd: error: execve(): 4_4.out: No such file or directory
+slurmstepd: error: execve(): 4_4.out: No such file or directory
+slurmstepd: error: execve(): 4_4.out: No such file or directory
+slurmstepd: error: execve(): 4_4.out: No such file or directory
+slurmstepd: error: execve(): 4_4.out: No such file or directory
+slurmstepd: error: execve(): 4_4.out: No such file or directory
+slurmstepd: error: execve(): 4_4.out: No such file or directory
+slurmstepd: error: execve(): 4_4.out: No such file or directory
+slurmstepd: error: execve(): 4_4.out: No such file or directory
+slurmstepd: error: execve(): 4_4.out: No such file or directory
+slurmstepd: error: execve(): 4_4.out: No such file or directory
+slurmstepd: error: execve(): 4_4.out: No such file or directory
+slurmstepd: error: execve(): 4_4.out: No such file or directory
+slurmstepd: error: execve(): 4_4.out: No such file or directory
+slurmstepd: error: execve(): 4_4.out: No such file or directory
+slurmstepd: error: execve(): 4_4.out: No such file or directory
+slurmstepd: error: execve(): 4_4.out: No such file or directory
+slurmstepd: error: execve(): 4_4.out: No such file or directory
+srun: error: nvf-004: tasks 0-31: Exited with exit code 2
+srun: error: nvf-005: tasks 32-63: Exited with exit code 2
+JobId=32450476 JobName=cores64
+   UserId=atiksere(6182411) GroupId=biochem(2005) MCS_label=N/A
+   Priority=9595 Nice=0 Account=dicksonlab QOS=normal
+   JobState=RUNNING Reason=None Dependency=(null)
+   Requeue=1 Restarts=0 BatchFlag=1 Reboot=0 ExitCode=0:0
+   RunTime=00:00:17 TimeLimit=01:00:00 TimeMin=N/A
+   SubmitTime=2024-03-12T12:47:08 EligibleTime=2024-03-12T12:47:08
+   AccrueTime=2024-03-12T12:47:08
+   StartTime=2024-03-12T12:47:11 EndTime=2024-03-12T13:47:11 Deadline=N/A
+   SuspendTime=None SecsPreSuspend=0 LastSchedEval=2024-03-12T12:47:11 Scheduler=Main
+   Partition=DicksonLab AllocNode:Sid=dev-amd20-v100:115236
+   ReqNodeList=(null) ExcNodeList=(null)
+   NodeList=nvf-[004-005]
+   BatchHost=nvf-004
+   NumNodes=2 NumCPUs=64 NumTasks=2 CPUs/Task=32 ReqB:S:C:T=0:0:*:*
+   ReqTRES=cpu=64,mem=4G,node=2,billing=622
+   AllocTRES=cpu=64,mem=4G,node=2,billing=622
+   Socks/Node=* NtasksPerN:B:S:C=0:0:*:* CoreSpec=*
+   MinCPUsNode=32 MinMemoryNode=2G MinTmpDiskNode=0
+   Features=[intel14|intel16|intel18|(amr|acm)|nvf|nal|nif] DelayBoot=00:00:00
+   OverSubscribe=OK Contiguous=0 Licenses=(null) Network=(null)
+   Command=/mnt/ufs18/home-244/atiksere/CMSE822/project-3-mpi-p2p-team-8/submitjob.sb
+   WorkDir=/mnt/ufs18/home-244/atiksere/CMSE822/project-3-mpi-p2p-team-8
+   Comment=stdout=/mnt/ufs18/home-244/atiksere/CMSE822/project-3-mpi-p2p-team-8/slurm-32450476.out 
+   StdErr=/mnt/ufs18/home-244/atiksere/CMSE822/project-3-mpi-p2p-team-8/slurm-32450476.out
+   StdIn=/dev/null
+   StdOut=/mnt/ufs18/home-244/atiksere/CMSE822/project-3-mpi-p2p-team-8/slurm-32450476.out
+   Power=
+   
+

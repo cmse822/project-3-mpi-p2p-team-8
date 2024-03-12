@@ -54,7 +54,7 @@ int main(int argc, char *argv[])
     if (rank == 0)
     {
         char filename[256];
-        sprintf(filename, "comm_data_%d.csv", numtasks); // Filename includes the number of tasks
+        sprintf(filename, "comm_data_%d_blocking.csv", numtasks); // Filename includes the number of tasks
         FILE *file = fopen(filename, "w");
         fprintf(file, "Rank,Node,MessageSize,AverageTimePerExchange\n");
 

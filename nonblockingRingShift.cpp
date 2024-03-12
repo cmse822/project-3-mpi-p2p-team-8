@@ -27,6 +27,9 @@ int main(int argc, char *argv[])
         all_processor_names = (char(*)[MPI_MAX_PROCESSOR_NAME])malloc(numtasks * MPI_MAX_PROCESSOR_NAME * sizeof(char));
     }
 
+    MPI_Request *send_requests = (MPI_Request *)malloc(num_iterations * sizeof(MPI_Request));
+    MPI_Request *recv_requests = (MPI_Request *)malloc(num_iterations * sizeof(MPI_Request));
+
     for (int i = 0; i < num_sizes; i++)
     {
         char *send_buffer = (char *)malloc(message_size[i] * sizeof(char));
@@ -36,16 +39,19 @@ int main(int argc, char *argv[])
 
         for (int n = 0; n < num_iterations; n++)
         {
-            MPI_Isendrecv(send_buffer, message_size[i], MPI_BYTE, (rank + 1) % numtasks, 0,
-                          recv_buffer, message_size[i], MPI_BYTE, (rank + numtasks - 1) % numtasks, 0,
-                          MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+            MPI_Isend(send_buffer, message_size[i], MPI_BYTE, (rank + 1) % numtasks, 0, MPI_COMM_WORLD, &send_requests[n]);
+            MPI_Irecv(recv_buffer, message_size[i], MPI_BYTE, (rank + numtasks - 1) % numtasks, 0, MPI_COMM_WORLD, &recv_requests[n]);
         }
+
+        // Wait for all send and receive operations to complete
+        MPI_Waitall(num_iterations, send_requests, MPI_STATUSES_IGNORE);
+        MPI_Waitall(num_iterations, recv_requests, MPI_STATUSES_IGNORE);
 
         double end_time = MPI_Wtime();
         free(send_buffer);
         free(recv_buffer);
 
-        avg_times[i] = (end_time - start_time) / num_iterations; // Calculate the local average time per exchange
+        avg_times[i] = (end_time - start_time) / num_iterations;
     }
 
     MPI_Gather(avg_times, num_sizes, MPI_DOUBLE, all_avg_times, num_sizes, MPI_DOUBLE, 0, MPI_COMM_WORLD);
@@ -54,7 +60,7 @@ int main(int argc, char *argv[])
     if (rank == 0)
     {
         char filename[256];
-        sprintf(filename, "comm_data_%d.csv", numtasks); // Filename includes the number of tasks
+        sprintf(filename, "comm_data_%d_nonblocking.csv", numtasks);
         FILE *file = fopen(filename, "w");
         fprintf(file, "Rank,Node,MessageSize,AverageTimePerExchange\n");
 
@@ -70,6 +76,8 @@ int main(int argc, char *argv[])
     }
 
     free(avg_times);
+    free(send_requests);
+    free(recv_requests);
     if (rank == 0)
     {
         free(all_avg_times);

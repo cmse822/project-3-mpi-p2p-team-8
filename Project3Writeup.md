@@ -12,9 +12,8 @@ Your task is to implement the ping-pong problem using MPI in C or C++ and analyz
 5. Plot the average communication time of a single exchange (send and receive) as a function of message size for the two cases. Using this plot, estimate the _latency_ and _bandwidth_ for each case. Are they different? Explain your results.
 
 TODO: Calculate Latency and Bandwidth
-![Blocking Ping Pong on the same arhitecture](blockingPingPongAverageTimePerMessageSizeSAMEARCHITECTURE.png)
-
-
+![Blocking Ping Pong on the same architecture](blockingPingPongAverageTimePerMessageSizeSAMEARCHITECTURE.png)
+![Blocking Ping Pong on the same architecture](blockingPingPongAverageTimePerMessageSizeDIFFERENTARCHITECTURE.png)
 
 6. Analyze and discuss your results. Explain the behavior of the resulting curves.
 

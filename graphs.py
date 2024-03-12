@@ -1,5 +1,6 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+import numpy as np
 
 
 def main():
@@ -9,18 +10,17 @@ def main():
     
     df = pd.read_csv(csv_file_path, low_memory=False)
 
-    print(df)
+    # Does not include the unnamed columns element
+    avg_time_row = df.columns[0:12]
 
-    avg_time_row = df.iloc[0].tolist()
-
-    
+    plt.figure(figsize = (12,6))
     plt.plot(message_sizes, avg_time_row, label='Avgerate time per message size', linestyle='-', linewidth=1, color='blue')
     plt.xlabel('Message size (bytes)')
     plt.ylabel('Average time (seconds)')
     plt.legend(loc='upper left',)
     plt.grid(True)
-
-    plt.title("Average time per message size")
-    plt.savefig("blockingPingPongAverageTimePerMessageSize.png")
+    plt.title("BlockingPingPong: Average time per message size")
+    plt.savefig("blockingPingPongAverageTimePerMessageSizeSAMEARCHITECTURE.png")
+    plt.show()
 
 main()

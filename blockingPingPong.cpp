@@ -22,8 +22,6 @@ int main(int argc, char *argv[])
         printf("Ping-pong between ranks %d--%d\n",
            processA,processB);
     }
-    
-
 
     double send_data = 1.;
     int num_iterations = 100;

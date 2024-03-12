@@ -36,9 +36,9 @@ int main(int argc, char *argv[])
 
         for (int n = 0; n < num_iterations; n++)
         {
-            MPI_Sendrecv(send_buffer, message_size[i], MPI_BYTE, (rank + 1) % numtasks, 0,
-                         recv_buffer, message_size[i], MPI_BYTE, (rank + numtasks - 1) % numtasks, 0,
-                         MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+            MPI_Isendrecv(send_buffer, message_size[i], MPI_BYTE, (rank + 1) % numtasks, 0,
+                          recv_buffer, message_size[i], MPI_BYTE, (rank + numtasks - 1) % numtasks, 0,
+                          MPI_COMM_WORLD, MPI_STATUS_IGNORE);
         }
 
         double end_time = MPI_Wtime();

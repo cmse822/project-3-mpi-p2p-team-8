@@ -34,7 +34,7 @@ int main(int argc, char *argv[])
     int avg_time_matrix [12] = {};
 
     // Specify the name of the new CSV file
-    std::string csvFileName = "nonBlockingPingPongSAMEARTECHTURE.csv";
+    std::string csvFileName = "nonBlockingPingPongDIFFERENTARTECHTURE.csv";
 
     // Open a new CSV file for writing
     std::ofstream csvFile(csvFileName);

@@ -8,6 +8,24 @@ Your task is to implement the ping-pong problem using MPI in C or C++ and analyz
     Done!
 3. Record the total amount of data sent and received during the ping-pong exchange for each configuration.
     <span style="color:red;">TODO: Jacob?.</span>
+
+    The total message size (send and receive) in bytes is equal to the size of 1 message in bytes, multiplied by 2 since it's sent and received twice (once by each process), and then multiplied by 100 since our total message size includes the message sizes for all 100 iterations.
+    
+    | Message size (bytes) | Total message size (send and receive) in bytes |
+    |-----------------|-----------------|
+    | 2 | 400 |
+    | 4 | 800 |
+    | 8 | 1600 |
+    | 16 | 3200 |
+    | 32 | 6400 |
+    | 64 | 12800 |
+    | 128 | 25600 |
+    | 256 | 51200 |
+    | 512 | 102400 |
+    | 1024 | 204800 |
+    | 2048 | 409600 |
+    | 4096 | 819200 |
+   
 4. Repeat steps 2 and 3 but ensure that the 2 processes that are communicating reside on different physical hardware nodes on HPCC.
 5. Plot the average communication time of a single exchange (send and receive) as a function of message size for the two cases. Using this plot, estimate the _latency_ and _bandwidth_ for each case. Are they different? Explain your results.
 
@@ -18,28 +36,15 @@ Above are our plots that show the average communication time of a single exchang
 
 In order to find the latency for each case, we just need to look at each point on our plots to determine the average latency for each case at each given message size. So, for the case of blocking ping pong on the same architecture, the latency typically varies between 1x10<sup>-6</sup> and 6x10<sup>-6</sup> seconds, while the case of blocking ping pong on different architectures is more consistently located around 5x10<sup>-5</sup> seconds and 7x10<sup>-5</sup> seconds latencies. However, looking at both graphs, we can see that the latency for the initial message size of 2 bytes is much higher than what would be expected and stands as an outlier for both blocking ping pong on the same and different architectures, and we believe this abnormality is due to high up-front cost of the program that is creating delayed and abnormally large latency times in the 2 byte message dataset.
 
-As for the bandwidth, we can look at the slope of the lines between our latency points on our graph to estimate the bandwidth and see if it increases and by how much it increases as the message size gets larger. Flat lines early in the plots for both cases indicate that for small message sizes (that aren't message size = 2 bytes for reasons previously described), the bandwidth doesn't relatively change with the latency since we don't see an increase in latency as the message size goes up. However, once we get to message sizes of 64 bytes and above in both plots, we start to see an exponential increase in latency values, with latency going from 1x10<sup>-6</sup> seconds at 64 bytes to 6x10<sup>-6</sup> seconds at 4096 bytes for the same architecture case and 5x10<sup>-5</sup> seconds at 64 bytes to 7x10<sup>-5</sup> seconds at 4096 bytes for the different architectures case. Given these estimations, this means that the bandwidth for the same architecture case went from 0.000064 bytes/second at 64 bytes to 0.024576 bytes/second at 4096 bytes and the bandwidth for the different architectures case went from 0.0032 bytes/second at 64 bytes to 0.28672 bytes/second at 4096 bytes.
+As for the bandwidth, we can look at the slope of the lines between our latency points on our graph to estimate the bandwidth and see if it increases and by how much it increases as the message size gets larger. Flat lines early in the plots for both cases indicate that for small message sizes (that aren't message size = 2 bytes for reasons previously described), the bandwidth doesn't relatively change with the latency since we don't see an increase in latency as the message size goes up, and this typically means that the initial latency hasn't been overcome by the bandwidth yet. However, once we get to message sizes of 64 bytes and above in both plots, we start to see an exponential increase in latency values, with latency going from 1x10<sup>-6</sup> seconds at 64 bytes to 6x10<sup>-6</sup> seconds at 4096 bytes for the same architecture case and 5x10<sup>-5</sup> seconds at 64 bytes to 7x10<sup>-5</sup> seconds at 4096 bytes for the different architectures case. Given these estimations, this means that the average bandwidth for the same architecture case went from 64/(1x10<sup>-6</sup>) = 64,000,000 bytes/second at 64 bytes to 682,666,666.7 bytes/second at 4096 bytes and the average bandwidth for the different architectures case went from 1,280,000 bytes/second at 64 bytes to 58,514,285.71 bytes/second at 4096 bytes.
 
 So, the latency and bandwidth for both cases increases as the message size gets larger, but the case of different architectures has much larger latency and bandwidth values than the case of blocking ping pong being ran on the same architecture. This makes sense, as processes running on the same architecture will be closer together and therefore will be able to communicate more efficiently thatn processes running on different architectures.
 
-| Message size (bytes) | Total message size (send and receive) in bytes |
-|-----------------|-----------------|
-| 2 | 400 |
-| 4 | 800 |
-| 8 | 1600 |
-| 16 | 3200 |
-| 32 | 6400 |
-| 64 | 12800 |
-| 128 | 25600 |
-| 256 | 51200 |
-| 512 | 102400 |
-| 1024 | 204800 |
-| 2048 | 409600 |
-| 4096 | 819200 |
-
 6. Analyze and discuss your results. Explain the behavior of the resulting curves.
 
-TODO: Jacob/Jared?
+As we touched upon in the previous question, our resulting plots for blocking ping pong make sense. For both the case of blocking ping pong on the same architecture and the case of blocking ping pong on different architectures, we see an expected increase in latency and bandwidth as the message sizes increase since larger messages will take longer to send due to the fact that they have more data to send, which will also increase bandwidth as the hardware tries to send the larger messages more quickly. However, this increase in bandwidth is still dependent on hardware limitations, which is why the bandwidth doesn't always increase to a point where latency is the same regardless of the message size. It also makes sense that the case of blocking ping pong on different architectures has higher bandwidth and latency than blocking ping pong on the same architecture, as the increased physical distance between nodes that processes are running on will lead to increased time to send and receive messages (latency) and in turn cause a higher bandwidth.
+
+The one outlier that appears in both plots is a large latency value for the initial message size (message size = 2 bytes), followed by a steep bandwidth drop off before we see expected latency and bandwidth values for all messages sizes from 4 bytes onward. We have chalked this outlier up to up-front costs of the program which are causing the latency values for message sizes of 2 bytes to be inflated and not representative of the overall trend we see in our plots.
 
 ## Part 2: Non-block Ping-Pong (TODO: Jared and Jacob)
 

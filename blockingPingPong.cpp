@@ -45,7 +45,7 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-    for (int i = 0; i < message_list_length; i++) {
+    for (int i = 0; i < 12; i++) {
         char *buffer = (char *)malloc(message_size[i] * sizeof(char));
         double total_time = 0;
 
@@ -73,7 +73,6 @@ int main(int argc, char *argv[])
 
         if (rank == 0) {
             printf("Average time to complete the ping-pong exchange with message size %d: %f\n", message_size[i], avg_time);
-            printf("avg time: %f:", avg_time, "\n");
             avg_time_matrix[i] = avg_time;
             csvFile << avg_time << ",";
         }

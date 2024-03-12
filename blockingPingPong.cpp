@@ -48,20 +48,24 @@ int main(int argc, char *argv[])
     for (int i = 0; i < 12; i++) {
         char *buffer = (char *)malloc(message_size[i] * sizeof(char));
         double total_time = 0;
+        int total_message_size = 0;
 
         for (int n=0; n<num_iterations; n++) {
             if (rank == 0) {
                 start_time = MPI_Wtime();
 
                 MPI_Send(buffer,message_size[i] / sizeof(char),MPI_CHAR, processB,0,MPI_COMM_WORLD);
+                total_message_size += message_size[i]
                 MPI_Recv(buffer,message_size[i] / sizeof(char),MPI_CHAR, processB,0,MPI_COMM_WORLD,MPI_STATUS_IGNORE);
-
+                total_message_size += message_size[i]
 
                 end_time = MPI_Wtime();
 
             } else if (rank == 1){
                 MPI_Recv(buffer,message_size[i] / sizeof(char),MPI_CHAR, processA,0,MPI_COMM_WORLD,MPI_STATUS_IGNORE);
+                total_message_size += message_size[i]
                 MPI_Send(buffer,message_size[i] / sizeof(char),MPI_CHAR,processA,0,MPI_COMM_WORLD);
+                total_message_size += message_size[i]
                 
             }
 
@@ -72,7 +76,7 @@ int main(int argc, char *argv[])
 
 
         if (rank == 0) {
-            printf("Average time to complete the ping-pong exchange with message size %d: %f\n", message_size[i], avg_time);
+            printf("Average time to complete the ping-pong exchange with message size %d: %f. Total message size: %d\n", message_size[i], avg_time, total_message_size);
             avg_time_matrix[i] = avg_time;
             csvFile << avg_time << ",";
         }

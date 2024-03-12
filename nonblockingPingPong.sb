@@ -13,7 +13,7 @@
 # you can give your job a name for easier identification (same as -J) 
 
 ########## Command Lines to Run ########## 
-mpicxx nonBlockingPingPong.cpp -o nonblockingpingpongexecutable.exe
+mpiexec -n 2 nonblockingpingpongexecutable.exe  
 
 scontrol show job $SLURM_JOB_ID 
 ### write job information to output file

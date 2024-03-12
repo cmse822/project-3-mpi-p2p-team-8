@@ -4,9 +4,9 @@ import numpy as np
 
 
 def main():
-    csv_file_path_same_architecture = 'blockingPingPongSAMEARCHITECTURE.csv'
+    csv_file_path_same_architecture = 'nonblockingPingPongSAMEARCHITECTURE.csv'
 
-    csv_file_path_different_architecture = 'blockingPingPongDIFFERENTARCHITECTURE.csv'
+    csv_file_path_different_architecture = 'nonblockingPingPongDIFFERENTARCHITECTURE.csv'
 
 
     # to print specified csv file, change this path!
@@ -35,14 +35,13 @@ def main():
 
     plt.legend(loc='upper left',)
     plt.grid(True)
-    plt.title("BlockingPingPong: Average time per message size")
 
     if csv_file_path_for_graphic == csv_file_path_different_architecture:
-        plt.title("Different Architecture BlockingPingPong: Average time per message size")
-        plt.savefig("blockingPingPongAverageTimePerMessageSizeDIFFERENTARCHITECTURE.png")
+        plt.title("Different Architecture Non-BlockingPingPong: Average time per message size")
+        plt.savefig("nonblockingPingPongAverageTimePerMessageSizeDIFFERENTARCHITECTURE.png")
     elif csv_file_path_for_graphic == csv_file_path_same_architecture:
-        plt.title("Same Architecture BlockingPingPong: Average time per message size")
-        plt.savefig("blockingPingPongAverageTimePerMessageSizeSAMEARCHITECTURE.png")
+        plt.title("Same Architecture Non-BlockingPingPong: Average time per message size")
+        plt.savefig("nonblockingPingPongAverageTimePerMessageSizeSAMEARCHITECTURE.png")
 
     plt.show()
 

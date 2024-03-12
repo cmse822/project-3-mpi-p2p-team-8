@@ -22,8 +22,6 @@ int main(int argc, char *argv[])
         printf("Ping-pong between ranks %d--%d\n",
            processA,processB);
     }
-    
-
 
     double send_data = 1.;
     int num_iterations = 100;
@@ -31,10 +29,9 @@ int main(int argc, char *argv[])
     double end_time = 0;
     int message_list_length = 12;
 
-    
-    
-    int message_size [message_list_length] = {2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096};
-    int total_message_size_matrix [message_list_length] = {};
+    // Initializing an array's size with a variable in C++ throws a memory error
+    int message_size [12] = {2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096};
+    int total_message_size_matrix [12] = {};
 
     for (int i = 0; i < message_list_length; i++) {
         char *buffer = (char *)malloc(message_size[i] * sizeof(char));

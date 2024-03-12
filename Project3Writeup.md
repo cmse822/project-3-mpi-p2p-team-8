@@ -7,8 +7,7 @@ Your task is to implement the ping-pong problem using MPI in C or C++ and analyz
 2. Measure the time taken to complete the ping-pong exchange for different message sizes. You should use the `MPI_Wtime()` function to obtain the time before and after the exchange and calculate the elapsed time. Vary the message size from 2 bytes to 4 kilobytes in powers of 2 (i.e., 2 bytes, 4 bytes, 8 bytes,..., 2048 bytes, 4096 bytes). For each message size, perform 100 iterations of the ping-pong to build up statistical significance.
     Done!
 3. Record the total amount of data sent and received during the ping-pong exchange for each configuration.
-    <span style="color:red;">TODO: Jacob?.</span>
-
+    
     The total message size (send and receive) in bytes is equal to the size of 1 message in bytes, multiplied by 2 since it's sent and received twice (once by each process), and then multiplied by 100 since our total message size includes the message sizes for all 100 iterations.
     
     | Message size (bytes) | Total message size (send and receive) in bytes |

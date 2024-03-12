@@ -55,17 +55,17 @@ int main(int argc, char *argv[])
                 start_time = MPI_Wtime();
 
                 MPI_Send(buffer,message_size[i] / sizeof(char),MPI_CHAR, processB,0,MPI_COMM_WORLD);
-                total_message_size += message_size[i]
+                total_message_size += message_size[i];
                 MPI_Recv(buffer,message_size[i] / sizeof(char),MPI_CHAR, processB,0,MPI_COMM_WORLD,MPI_STATUS_IGNORE);
-                total_message_size += message_size[i]
+                total_message_size += message_size[i];
 
                 end_time = MPI_Wtime();
 
             } else if (rank == 1){
                 MPI_Recv(buffer,message_size[i] / sizeof(char),MPI_CHAR, processA,0,MPI_COMM_WORLD,MPI_STATUS_IGNORE);
-                total_message_size += message_size[i]
+                total_message_size += message_size[i];
                 MPI_Send(buffer,message_size[i] / sizeof(char),MPI_CHAR,processA,0,MPI_COMM_WORLD);
-                total_message_size += message_size[i]
+                total_message_size += message_size[i];
                 
             }
 

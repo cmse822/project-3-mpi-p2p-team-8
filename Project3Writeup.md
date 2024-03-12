@@ -11,11 +11,29 @@ Your task is to implement the ping-pong problem using MPI in C or C++ and analyz
 4. Repeat steps 2 and 3 but ensure that the 2 processes that are communicating reside on different physical hardware nodes on HPCC.
 5. Plot the average communication time of a single exchange (send and receive) as a function of message size for the two cases. Using this plot, estimate the _latency_ and _bandwidth_ for each case. Are they different? Explain your results.
 
-TODO: Calculate Latency and Bandwidth (and For each message size, perform 100 iterations of the ping-pong to build up statistical significance) maybe in a table?-> Jacob?
+TODO: Calculate Latency and Bandwidth -> Jacob?
 ![Blocking Ping Pong on the same architecture](blockingPingPongAverageTimePerMessageSizeSAMEARCHITECTURE.png)
 ![Blocking Ping Pong on the same architecture](blockingPingPongAverageTimePerMessageSizeDIFFERENTARCHITECTURE.png)
 
+| Message size (bytes) | Total message size (send and receive) in bytes |
+|-----------------|-----------------|
+| 2 | 400 |
+| 4 | 800 |
+| 8 | 1600 |
+| 16 | 3200 |
+| 32 | 6400 |
+| 64 | 12800 |
+| 128 | 25600 |
+| 256 | 51200 |
+| 512 | 102400 |
+| 1024 | 204800 |
+| 2048 | 409600 |
+| 4096 | 819200 |
+
+
 6. Analyze and discuss your results. Explain the behavior of the resulting curves.
+
+TODO: Jacob/Jared?
 
 ## Part 2: Non-block Ping-Pong (TODO: Berk and Cheng)
 

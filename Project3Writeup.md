@@ -30,7 +30,6 @@ TODO: Calculate Latency and Bandwidth -> Jacob?
 | 2048 | 409600 |
 | 4096 | 819200 |
 
-
 6. Analyze and discuss your results. Explain the behavior of the resulting curves.
 
 TODO: Jacob/Jared?
@@ -38,6 +37,9 @@ TODO: Jacob/Jared?
 ## Part 2: Non-block Ping-Pong (TODO: Jared and Jacob)
 
 Repeat Part 1 using non-blocking MPI communication, i.e., using `MPI_Isend()` and `MPI_Irecv()`. You will need to include explicit process synchronization using, e.g., `MPI_Wait()` calls. Compare the results to the blocking case.
+
+![Non-Blocking Ping Pong on the same architecture](nonBlockingPingPongAverageTimePerMessageSizeSAMEARCHITECTURE.png)
+![Non-Blocking Ping Pong on the same architecture](nonBlockingPingPongAverageTimePerMessageSizeDIFFERENTARCHITECTURE.png)
 
 ## Part 3: MPI Ring Shift (TODO: Berk and Cheng)
 

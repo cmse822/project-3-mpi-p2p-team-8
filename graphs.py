@@ -3,14 +3,14 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-def main():
-    csv_file_path_same_architecture = 'nonblockingPingPongSAMEARCHITECTURE.csv'
+def main(): 
+    csv_file_path_same_architecture = 'nonBlockingPingPongSAMEARCHITECTURE.csv'
 
-    csv_file_path_different_architecture = 'nonblockingPingPongDIFFERENTARCHITECTURE.csv'
+    csv_file_path_different_architecture = 'nonBlockingPingPongDIFFERENTARCHITECTURE.csv'
 
 
     # to print specified csv file, change this path!
-    csv_file_path_for_graphic = csv_file_path_same_architecture
+    csv_file_path_for_graphic = csv_file_path_different_architecture
 
 
 

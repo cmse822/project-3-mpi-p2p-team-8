@@ -38,8 +38,8 @@ TODO: Jacob/Jared?
 
 Repeat Part 1 using non-blocking MPI communication, i.e., using `MPI_Isend()` and `MPI_Irecv()`. You will need to include explicit process synchronization using, e.g., `MPI_Wait()` calls. Compare the results to the blocking case.
 
-![Non-Blocking Ping Pong on the same architecture](nonBlockingPingPongAverageTimePerMessageSizeSAMEARCHITECTURE.png)
-![Non-Blocking Ping Pong on the same architecture](nonBlockingPingPongAverageTimePerMessageSizeDIFFERENTARCHITECTURE.png)
+![Non-Blocking Ping Pong on the same architecture](nonblockingPingPongAverageTimePerMessageSizeSAMEARCHITECTURE.png)
+![Non-Blocking Ping Pong on the same architecture](nonblockingPingPongAverageTimePerMessageSizeDIFFERENTARCHITECTURE.png)
 
 ## Part 3: MPI Ring Shift (TODO: Berk and Cheng)
 

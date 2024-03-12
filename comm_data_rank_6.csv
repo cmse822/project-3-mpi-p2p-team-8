@@ -1,0 +1,13 @@
+NodeName,MessageSize,TotalTime,AverageTimePerExchange
+Berks-MBP.attlocal.net,2,0.001700,0.000017
+Berks-MBP.attlocal.net,4,0.000059,0.000001
+Berks-MBP.attlocal.net,8,0.000045,0.000000
+Berks-MBP.attlocal.net,16,0.000050,0.000000
+Berks-MBP.attlocal.net,32,0.000051,0.000001
+Berks-MBP.attlocal.net,64,0.000054,0.000001
+Berks-MBP.attlocal.net,128,0.000063,0.000001
+Berks-MBP.attlocal.net,256,0.000075,0.000001
+Berks-MBP.attlocal.net,512,0.000167,0.000002
+Berks-MBP.attlocal.net,1024,0.000192,0.000002
+Berks-MBP.attlocal.net,2048,0.000229,0.000002
+Berks-MBP.attlocal.net,4096,0.000434,0.000004

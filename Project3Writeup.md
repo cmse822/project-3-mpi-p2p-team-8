@@ -100,7 +100,7 @@ When comparing the results of non-blocking ping pong in Part 2 to our previous r
 
 The biggest difference between blocking and non-blocking ping pong comes from the fact that, when comparing both cases for both blocking and non-blocking ping pong, the non-blocking ping pong case will have lower latency and higher bandwidth than it's blocking counterpart for both cases. An example of this would be the case of ping pong between processes on the same node with a message size of 4096 bytes, where blocking ping pong has a latency of 6x10<sup>-6</sup> seconds and a bandwidth of 682,666,666.7 bytes/second while non-blocking ping pong has a latency of 2x10<sup>-6</sup> seconds and a bandwidth of 2,048,000,000 bytes/second. In this case, non-blocking ping pong had 1/3rd the latency and 3x the bandwidth of blocking ping pong. This makes sense, as non-blocking ping pong isn't wasting time waiting to confirm that a message has been sent or received, and so it can more efficiently send and receive messages but with the added risks of using non-blocking MPI like potential for deadlock scenarios.
 
-## Part 3: MPI Ring Shift (TODO: Berk and Cheng)
+## Part 3: MPI Ring Shift
 
 1. Implement the MPI ring shift in C or C++ for an arbitrary number of processes in the ring and arbitrary message size (i.e., number of elements per process). In your implementation, use `MPI_Sendrecv()` instead of separate `MPI_Send()` and `MPI_Recv()` calls.
 2. As in Parts 1 and 2, vary the message size from 2 bytes to 4 kb, in powers of 2. Also vary the number of processes used from 2 to `N`, in powers of 2, where `N` is sufficiently large that rank 0 and rank `N-1` are guaranteed to reside on separate nodes (`N` will depend on which cluster you are using on HPCC).
@@ -132,7 +132,7 @@ Moreover, the behavior at large message sizes could also be influenced by factor
 
 Overall, these graphs provide valuable insights into the system's performance and can inform decisions about optimizing communication patterns for different message sizes, such as implementing message segmentation strategies for larger data sizes to avoid hitting the bandwidth cap or improving load balancing techniques to ensure even distribution of communication overhead across all ranks and nodes.
 
-## Part 4: Non-blocking MPI Ring Shift (TODO: Berk and Cheng)
+## Part 4: Non-blocking MPI Ring Shift 
 
 Repeat Part 3 but using non-blocking communication via `MPI_Isendrecv()`. Compare the results to the blocking case.
 

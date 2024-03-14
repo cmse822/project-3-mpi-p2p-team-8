@@ -104,11 +104,51 @@ The biggest difference between blocking and non-blocking ping pong comes from th
 
 1. Implement the MPI ring shift in C or C++ for an arbitrary number of processes in the ring and arbitrary message size (i.e., number of elements per process). In your implementation, use `MPI_Sendrecv()` instead of separate `MPI_Send()` and `MPI_Recv()` calls.
 2. As in Parts 1 and 2, vary the message size from 2 bytes to 4 kb, in powers of 2. Also vary the number of processes used from 2 to `N`, in powers of 2, where `N` is sufficiently large that rank 0 and rank `N-1` are guaranteed to reside on separate nodes (`N` will depend on which cluster you are using on HPCC).
+
+For this part, we requested to use 2 different nodes with 32 cores each. In our runs, ranks [0-31] were located in nvf-004 and nodes [32-63] were located in nvf-005. In this communication scheme, ranks 0,31,32, and 63 were the transition ranks. These ranks allows us to understand how using different nodes could effect the communication time.
+
 3. Compute the bandwidth and latency, as above. Plot the bandwidth as a function of message size. Include separate lines for each number of processes used.
-![Blocking Ring Shift](blocking_ring_shift.png)
+
+![Blocking Ring Shift](blocking_64core_ringshift_node-comparison.png)
+![Blocking Ring Shift](blocking_64core_ringshift_rank-comparison.png)
+
+
+
+
+
 4. Analyze and discuss your results. Explain the behavior of the resulting curves.
+
+The provided analysis suggests that the communication behavior across nodes and ranks remains stable and consistent up to a certain message size threshold (around 512 bits), beyond which the average time per exchange increases significantly. This is indicative of the bandwidth limit being reached, where the system cannot handle the increased load, resulting in longer exchange times.
+
+From the node-comparison graph, it appears that different types of nodes (Transition, In, and Out nodes) perform similarly across varying message sizes. This uniform behavior suggests that the node may not significantly affect the time required for message exchanges within the tested range. Ofcoursei this behaviour would be substantially different if the nodes were farther apart from each other.
+
+In the rank-comparison graph, the even distribution of exchange times across ranks indicates that the system exhibits good load balancing, with no particular rank showing consistently higher exchange times. This uniformity across ranks is a positive sign of the system's scalability and its ability to handle parallel processes efficiently.
+
+It is interesting to note the slight initial increase in exchange times at the lower message sizes, which might be due to the overhead of setting up communications. As message size increases, this overhead becomes negligible compared to the actual data transfer time, which is why we see a relative decrease in time per exchange before hitting the bandwidth ceiling.
+
+After reaching the bandwidth limit, the steep increase in exchange times could be attributed to network congestion, buffer overflow, or other system limitations. When the system attempts to transmit data larger than what the bandwidth can support, it likely results in queuing delays, retransmissions, or other inefficiencies that compound the exchange time.
+
+Moreover, the behavior at large message sizes could also be influenced by factors such as the efficiency of the communication protocol, the network topology, and the physical distance between communicating nodes. For example, if the communication protocol includes significant overhead for error checking and correction, this could slow down the exchange at higher data sizes. Similarly, if the network topology results in increased path lengths for larger messages, or if physical distances increase propagation delay, these factors could also contribute to the observed trends.
+
+Overall, these graphs provide valuable insights into the system's performance and can inform decisions about optimizing communication patterns for different message sizes, such as implementing message segmentation strategies for larger data sizes to avoid hitting the bandwidth cap or improving load balancing techniques to ensure even distribution of communication overhead across all ranks and nodes.
 
 ## Part 4: Non-blocking MPI Ring Shift (TODO: Berk and Cheng)
 
 Repeat Part 3 but using non-blocking communication via `MPI_Isendrecv()`. Compare the results to the blocking case.
-![Non-blocking Ring Shift](nonblocking_ring_shift.png)
+
+![Blocking Ring Shift](nonBlocking_64core_ringshift_node-comparison.png)
+![Blocking Ring Shift](nonBlocking_64core_ringshift_rank-comparison.png)
+
+In the non-blocking circular shift graphs provided, we observe a very different pattern compared to the previous blocking communication graphs. Here, the exchange times are far more erratic across different message sizes, displaying a significant variance in communication times at nearly every point.
+
+Looking at the node-comparison graph, the large fluctuations suggest that there is a high degree of variability in how quickly different nodes can process and send messages. This might be due to the asynchronous nature of non-blocking communication, where nodes do not have to wait for a send or receive to complete before moving on to other work. The variations might be caused by differences in node workloads, with one node able to process non-blocking sends/receives quickly because they have fewer other tasks, while other node take longer due to being more heavily loaded.
+
+Another aspect that can influence these results is the system's underlying architecture. For instance, nodes might be physically closer to each other, allowing for faster data transfer, or the network could be experiencing transient congestion at different points in time, affecting communication irregularly.
+
+The rank-comparison graph also shows substantial variability, with no clear pattern emerging as message size increases. In non-blocking communication, since processes are not waiting for communication to complete, they can continue to perform computations or other communications. This could result in some ranks completing their communications faster at certain times, depending on what other operations they are performing concurrently. Additionally, any synchronization that occurs after the non-blocking operations could be affecting the times captured, as ranks might reach synchronization points at different times.
+
+The erratic nature of these graphs suggests that non-blocking communication introduces a level of complexity that is not as easily predictable as blocking communication. This can be beneficial in systems where computation can be overlapped with communication, potentially leading to more efficient overall performance despite the variability in communication times.
+
+The apparent randomness in these results could be further analyzed by investigating the load on each node and rank at the time of communication, the tasks being overlapped with communication, and the effects of network topology.
+
+In summary, the provided non-blocking communication graphs illustrate the complexity and unpredictable nature of such operations. This behavior underscores the need for careful design and consideration when implementing non-blocking communication patterns in parallel applications, as they can potentially introduce significant performance variability.

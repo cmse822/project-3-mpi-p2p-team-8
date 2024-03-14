@@ -105,8 +105,10 @@ The biggest difference between blocking and non-blocking ping pong comes from th
 1. Implement the MPI ring shift in C or C++ for an arbitrary number of processes in the ring and arbitrary message size (i.e., number of elements per process). In your implementation, use `MPI_Sendrecv()` instead of separate `MPI_Send()` and `MPI_Recv()` calls.
 2. As in Parts 1 and 2, vary the message size from 2 bytes to 4 kb, in powers of 2. Also vary the number of processes used from 2 to `N`, in powers of 2, where `N` is sufficiently large that rank 0 and rank `N-1` are guaranteed to reside on separate nodes (`N` will depend on which cluster you are using on HPCC).
 3. Compute the bandwidth and latency, as above. Plot the bandwidth as a function of message size. Include separate lines for each number of processes used.
+![Blocking Ring Shift](blocking_ring_shift.png)
 4. Analyze and discuss your results. Explain the behavior of the resulting curves.
 
 ## Part 4: Non-blocking MPI Ring Shift (TODO: Berk and Cheng)
 
 Repeat Part 3 but using non-blocking communication via `MPI_Isendrecv()`. Compare the results to the blocking case.
+![Non-blocking Ring Shift](nonblocking_ring_shift.png)

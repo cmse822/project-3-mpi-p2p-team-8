@@ -1,0 +1,30 @@
+JobId=32459105 JobName=nonblockingpingpongTeam8
+   UserId=reiling1(6185837) GroupId=CMSE822_SS24_S001(2887) MCS_label=N/A
+   Priority=59649 Nice=0 Account=general QOS=reiling1
+   JobState=RUNNING Reason=None Dependency=(null)
+   Requeue=1 Restarts=0 BatchFlag=1 Reboot=0 ExitCode=0:0
+   RunTime=00:00:02 TimeLimit=00:10:00 TimeMin=N/A
+   SubmitTime=2024-03-12T15:41:28 EligibleTime=2024-03-12T15:41:28
+   AccrueTime=2024-03-12T15:41:28
+   StartTime=2024-03-12T15:41:31 EndTime=2024-03-12T15:51:31 Deadline=N/A
+   SuspendTime=None SecsPreSuspend=0 LastSchedEval=2024-03-12T15:41:31 Scheduler=Main
+   Partition=general-short AllocNode:Sid=dev-amd20:97663
+   ReqNodeList=lac-[224-225,228-248,278-285,294-301] ExcNodeList=(null)
+   NodeList=lac-[294-295]
+   BatchHost=lac-294
+   NumNodes=2 NumCPUs=2 NumTasks=2 CPUs/Task=1 ReqB:S:C:T=0:0:*:*
+   ReqTRES=cpu=2,mem=4G,node=2,billing=622
+   AllocTRES=cpu=2,mem=4G,node=2,billing=622
+   Socks/Node=* NtasksPerN:B:S:C=0:0:*:* CoreSpec=*
+   MinCPUsNode=1 MinMemoryNode=2G MinTmpDiskNode=0
+   Features=[intel14|intel16|intel18|(amr|acm)|nvf|nal|nif] DelayBoot=00:00:00
+   OverSubscribe=OK Contiguous=0 Licenses=(null) Network=(null)
+   Command=/mnt/ufs18/home-261/reiling1/project-3-mpi-p2p-team-8/nonblockingPingPong.sb
+   WorkDir=/mnt/ufs18/home-261/reiling1/project-3-mpi-p2p-team-8
+   Comment=stdout=/mnt/ufs18/home-261/reiling1/project-3-mpi-p2p-team-8/slurm-32459105.out 
+   StdErr=/mnt/ufs18/home-261/reiling1/project-3-mpi-p2p-team-8/slurm-32459105.out
+   StdIn=/dev/null
+   StdOut=/mnt/ufs18/home-261/reiling1/project-3-mpi-p2p-team-8/slurm-32459105.out
+   Power=
+   
+
